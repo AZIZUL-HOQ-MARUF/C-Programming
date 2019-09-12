@@ -79,16 +79,18 @@ public:
         }
         return flag;
     }
-    bool bsIsPresent(Node* x,int d){
+    bool bsIsPresent(Node* x,int d){ 
        if(x == NULL){
            flag = false;
            return flag;
        }
        else{
+           if(x->data == d){
+               flag =true;
+               return flag;
+           }
            Node* n = x;
            while(1){
-               counter ++;
-               cout << counter<< " ";
                if(d<n->data){
                    if(n->left == NULL){
                        return flag;
@@ -132,7 +134,7 @@ int main(){
     bst.insertNode(4);
     bst.insertNode(32);
     bst.insertNode(2);
-    if(bst.bsIsPresent(bst.root,2)){
+    if(bst.bsIsPresent(bst.root,32)){
         cout <<"present\n";
     }
     else{
