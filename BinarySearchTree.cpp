@@ -123,6 +123,10 @@ public:
        }
         return flag;
     }
+    bool isEmpty(){
+        return root==NULL ? true : false;
+        
+    }
 
 };
 int main(){
