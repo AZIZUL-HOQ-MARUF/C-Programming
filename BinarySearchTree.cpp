@@ -16,6 +16,7 @@ public:
 class BST{
 public:
     Node* root;
+    int counter;
     bool flag = false;
     BST(){
         root = NULL;
@@ -66,6 +67,8 @@ public:
         }
     }
     bool isPresent(Node* x,int d){
+        counter ++;
+        cout << counter;
         if(x != NULL){
             isPresent(x->left,d);
             if(x->data == d){
@@ -74,6 +77,48 @@ public:
             }
             isPresent(x->right,d);
         }
+        return flag;
+    }
+    bool bsIsPresent(Node* x,int d){
+       if(x == NULL){
+           flag = false;
+           return flag;
+       }
+       else{
+           Node* n = x;
+           while(1){
+               counter ++;
+               cout << counter<< " ";
+               if(d<n->data){
+                   if(n->left == NULL){
+                       return flag;
+                   }
+                   else{
+                       if(n->left->data == d){
+                           flag =true;
+                           return flag;
+                        }
+                        else{
+                            n = n->left;
+                        }
+                   }
+               }
+               else{
+                   if(n->right == NULL){
+                       return flag;
+                   }
+                   else{
+                       if(n->right->data == d){
+                           flag =true;
+                           return flag;
+                        }
+                        else{
+                            n = n->right;
+                        }
+                   }
+               }
+           }
+       }
         return flag;
     }
 
@@ -86,7 +131,8 @@ int main(){
     bst.insertNode(11);
     bst.insertNode(4);
     bst.insertNode(32);
-    if(bst.isPresent(bst.root,4)){
+    bst.insertNode(2);
+    if(bst.bsIsPresent(bst.root,2)){
         cout <<"present\n";
     }
     else{
