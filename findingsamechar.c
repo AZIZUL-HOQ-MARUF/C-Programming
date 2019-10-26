@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #include<stdio.h>
 int main(){
     char str[40],str1[40];
@@ -22,7 +22,7 @@ int main(){
     }
 return 0;
 }
-=======
+
 #include<stdio.h>
 int main(){
     char str[40],str1[40];
@@ -46,4 +46,4 @@ int main(){
     }
 return 0;
 }
->>>>>>> 61501bc864dbaad7acc053ab599d7383af3352f8
+
