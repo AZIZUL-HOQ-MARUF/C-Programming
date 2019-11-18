@@ -16,7 +16,9 @@ public:
 class BST{
 public:
     Node* root;
+    int sum = 0;
     bool flag = false;
+    int counter =0;
     BST(){
         root = NULL;
     }
@@ -65,14 +67,29 @@ public:
             cout << x->data << "\n";
         }
     }
+    int findSum(Node* x){
+        if(x != NULL){
+            findSum(x->left);
+            sum += x->data;
+            findSum(x->right);
+        }
+        return sum;
+    }
     bool isPresent(Node* x,int d){
         if(x != NULL){
-            isPresent(x->left,d);
-            if(x->data == d){
-                flag = true;
-                return flag;
+            if(d<x->data){
+                isPresent(x->left,d);
+                if(x->data == d){
+                    flag = true;
+                    return flag;
+                }
+            }else{
+                  isPresent(x->right,d);
+                  if(x->data == d){
+                    flag = true;
+                    return flag;
+                  }
             }
-            isPresent(x->right,d);
         }
         return flag;
     }
@@ -81,18 +98,15 @@ public:
 int main(){
     BST bst;
     bst.insertNode(10);
-    bst.insertNode(5);
-    bst.insertNode(12);
-    bst.insertNode(11);
-    bst.insertNode(4);
-    bst.insertNode(32);
-    if(bst.isPresent(bst.root,4)){
+    if(bst.isPresent(bst.root,11)){
         cout <<"present\n";
     }
     else{
         cout <<"not present\n";
     }
 
-    bst.inOrderLookUp(bst.root);
+    //bst.inOrderLookUp(bst.root);
+    //cout<<bst.counter;
+    cout<< bst.findSum(bst.root);
 
 }
