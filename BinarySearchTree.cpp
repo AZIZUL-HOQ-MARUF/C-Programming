@@ -76,6 +76,8 @@ public:
         return sum;
     }
     bool isPresent(Node* x,int d){
+        counter ++;
+        cout << counter;
         if(x != NULL){
             if(d<x->data){
                 isPresent(x->left,d);
@@ -93,12 +95,66 @@ public:
         }
         return flag;
     }
+    bool bsIsPresent(Node* x,int d){ 
+       if(x == NULL){
+           flag = false;
+           return flag;
+       }
+       else{
+           if(x->data == d){
+               flag =true;
+               return flag;
+           }
+           Node* n = x;
+           while(1){
+               if(d<n->data){
+                   if(n->left == NULL){
+                       return flag;
+                   }
+                   else{
+                       if(n->left->data == d){
+                           flag =true;
+                           return flag;
+                        }
+                        else{
+                            n = n->left;
+                        }
+                   }
+               }
+               else{
+                   if(n->right == NULL){
+                       return flag;
+                   }
+                   else{
+                       if(n->right->data == d){
+                           flag =true;
+                           return flag;
+                        }
+                        else{
+                            n = n->right;
+                        }
+                   }
+               }
+           }
+       }
+        return flag;
+    }
+    bool isEmpty(){
+        return root==NULL ? true : false;
+        
+    }
 
 };
 int main(){
     BST bst;
     bst.insertNode(10);
-    if(bst.isPresent(bst.root,11)){
+    bst.insertNode(5);
+    bst.insertNode(12);
+    bst.insertNode(11);
+    bst.insertNode(4);
+    bst.insertNode(32);
+    bst.insertNode(2);
+    if(bst.bsIsPresent(bst.root,32)){
         cout <<"present\n";
     }
     else{
